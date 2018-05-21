@@ -17,7 +17,7 @@ import com.shoron.demo.demoapplication.model.Note;
 import com.shoron.demo.demoapplication.repository.NoteRepository;
 
 @RestController
-@RequestMapping("/note")
+@RequestMapping("/api")
 public class NoteController {
 
 	@Autowired
@@ -29,8 +29,13 @@ public class NoteController {
 	    return noteRepository.findAll();
 	}
 	
-    // Create a new Note 
-
+    // Create a new Note -> save(value)
+	@PostMapping("/notes")
+	public Note createNote(@Valid @RequestBody Note note) {
+	    return noteRepository.save(note);
+	}
+	
+	
 	// Get a Single Note -> findById(noteId)
 	@GetMapping("/notes/{id}")
 	public Note getNoteById(@PathVariable(value = "id") Long noteId) {
