@@ -8,4 +8,5 @@ import com.shoron.demo.demoapplication.model.Note;
 @Repository
 public interface NoteRepository extends JpaRepository<Note, Long>{
 
+	// save(), findOne(), findAll(), count(), delete()
 }
