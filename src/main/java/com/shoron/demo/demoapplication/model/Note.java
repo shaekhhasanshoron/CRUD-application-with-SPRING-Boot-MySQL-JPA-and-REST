@@ -22,13 +22,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "notes")
 @EntityListeners(AuditingEntityListener.class)
-
+@JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, 
+allowGetters = true)
 public class Note {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, 
-    allowGetters = true)
 	private long id;
 	
     @NotBlank
@@ -46,4 +45,22 @@ public class Note {
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date updatedAt;
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}    
+    
+    
 }
